@@ -19,4 +19,6 @@ def file_input_ops(filename):
     features = tf.stack([example_id, sentence])
     author = tf.stack([eap, hpl, mws])
 
-    return features, author
+    features_batch, authors_batch = tf.train.shuffle_batch([features, author], batch_size=50)
+
+    return features_batch, authors_batch
